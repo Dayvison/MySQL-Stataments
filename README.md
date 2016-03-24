@@ -3,28 +3,6 @@
 Stataments para MySQL no SA-MP.
 >:heavy_exclamation_mark: Após uma perda de dados, a parte do código que se destinava a leitura foi perdida, portanto este agora apenas escreve dados, não lê.  
 
-##Exemplos
-
-###Inserindo
-```pawn
-// Prepara o statement
-new Statement:stmt = stmt_prepare(Conection, "INSERT INTO mytable VALUES(?, ?, ?)");
-
-// Seta os valores nas interrogações (Primeiro é 0, segundo é 1, etc...)
-stmt_bind_value(stmt, 0, TYPE_FLOAT , 123.456);
-stmt_bind_value(stmt, 1, TYPE_INT   , 1234567);
-stmt_bind_value(stmt, 2, TYPE_STRING, "there's no need to \"escape\" anything!");
-
-new array[] = {1, 2, 3, 4, 5};
-stmt_bind_value(stmt, 2, TYPE_ARRAY, array, sizeof(array));
-
-// Executa o statement
-stmt_execute(stmt);
-
-// Agora fecha-o
-stmt_close(stmt);
-```
-
 ##Funções
 ```pawn
 // Prepared statements
@@ -77,6 +55,28 @@ stmt_close(&Statement:statement)
 >* **Retorno:**
 >   * - Verdadeiro caso obtenha sucesso, falso caso contrário.
 ***
+
+
+###Inserindo dados
+```pawn
+// Prepara o statement
+new Statement:stmt = stmt_prepare(Conection, "INSERT INTO mytable VALUES(?, ?, ?)");
+
+// Seta os valores nas interrogações (Primeiro é 0, segundo é 1, etc...)
+stmt_bind_value(stmt, 0, TYPE_FLOAT , 123.456);
+stmt_bind_value(stmt, 1, TYPE_INT   , 1234567);
+stmt_bind_value(stmt, 2, TYPE_STRING, "there's no need to \"escape\" anything!");
+
+new array[] = {1, 2, 3, 4, 5};
+stmt_bind_value(stmt, 2, TYPE_ARRAY, array, sizeof(array));
+
+// Executa o statement
+stmt_execute(stmt);
+
+// Agora fecha-o
+stmt_close(stmt);
+```
+
 ###Créditos
 * Slice criação original do SQLitei.
 * Dayvison transcrição de parte do código para MySQL.
