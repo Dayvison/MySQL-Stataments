@@ -67,9 +67,6 @@ stmt_bind_value(stmt, 0, TYPE_FLOAT , 123.456);
 stmt_bind_value(stmt, 1, TYPE_INT   , 1234567);
 stmt_bind_value(stmt, 2, TYPE_STRING, "there's no need to \"escape\" anything!");
 
-new array[] = {1, 2, 3, 4, 5};
-stmt_bind_value(stmt, 2, TYPE_ARRAY, array, sizeof(array));
-
 // Executa o statement
 stmt_execute(stmt);
 
